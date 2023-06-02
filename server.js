@@ -119,15 +119,6 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
   }
 })
 
-// Handle production
-if (process.env.NODE_ENV === 'production') {
-  // Static folder
-  server.use(express.static(__dirname + '/public/'));
-
-  // Handle SPA
-  server.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
-}
-
 const port = process.env.PORT || 8000;
 server.listen(port, () => {
 	console.log(`Auth API Server started on port ${port}`)
